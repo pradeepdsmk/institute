@@ -8,14 +8,14 @@
     <title>Institute Name</title>
 
     <!-- CSS only -->
-    <link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="/bootstrap.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="/styles.css" />
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-3">
         <div class="container-fluid">
             <a class="navbar-brand">Institute Name</a>
 
@@ -34,7 +34,7 @@
                             <a class="nav-link active" aria-current="page" href="/applicationform">Application</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="/reports" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Reports
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

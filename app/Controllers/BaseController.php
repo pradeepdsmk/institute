@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use CodeIgniter\HTTP\IncomingRequest;
 
 /**
  * Class BaseController
@@ -30,6 +31,23 @@ class BaseController extends Controller
 	protected $helpers = [];
 
 	/**
+	 *
+	 * @var \CodeIgniter\Database\MySQLi\Connection
+	 */
+	protected $db;
+
+	/**
+	 * 
+	 * @var \App\Libraries\Auth
+	 */
+	protected $auth;
+
+	/**
+	 * @var IncomingRequest
+	 */
+	protected $request;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param RequestInterface  $request
@@ -44,6 +62,9 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
+		
+		$this->db = \Config\Database::connect('default');
 		$this->session = \Config\Services::session();
+		$this->auth = service('auth');
 	}
 }

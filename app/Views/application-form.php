@@ -3,9 +3,9 @@
 
 <?= $this->section('content') ?>
 
-<div class="application-form-wrap">
+<div class="application-form-wrap mt-5">
 
-    <h1 class="page-title">Application Form</h1>
+    <h3 class="page-title">Application Form</h3>
 
     <div class="container">
         <div class="application-form-wrap row justify-content-center">
@@ -13,7 +13,7 @@
 
                 <div class="photo-container mb-3">
                     <label>Photo</label>
-                    <div class="student-photo" style="background-image: url('/student.jpg')">
+                    <div class="student-photo" style="background-image: url('/student-example.jpg')">
                         <div class="btn btn-light edit-image-button" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -111,8 +111,9 @@
                     <input class="form-control" name="application-date" type="date" />
                 </div>
 
-                <div class="d-grid mb-3">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                <div class="d-grid mt-5 mb-3">
+                    <button class="btn btn-primary mb-3" type="submit">Submit</button>
+                    <button class="btn btn-light" type="submit">Cancel</button>
                 </div>
 
             </form>

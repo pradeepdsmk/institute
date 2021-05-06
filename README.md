@@ -46,6 +46,6 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 - xml (enabled by default - don't turn it off)
 
 
-##License
+## License
 
 Institute is free and distributed under MIT License. For full details, read the copy of the MIT License found in the file named LICENSE.

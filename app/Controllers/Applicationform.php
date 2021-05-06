@@ -8,4 +8,8 @@ class Applicationform extends BaseController
     {
         return view('application-form');
     }
+
+    public function submit() {
+        return view('application-form');
+    }
 }

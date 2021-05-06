@@ -88,3 +88,11 @@ nav a:hover {
     top: 0;
 }
 
+.empty-space-row {
+    height: 100px;
+}
+
+footer {
+    min-height: 100px;
+}
+

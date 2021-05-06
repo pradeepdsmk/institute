@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="application-form-wrap row justify-content-center">
-            <form class="form application-form col col-sm-10 col-md-8 my-3">
+            <form class="form application-form col col-sm-10 col-md-8 my-3" method="post" action="/applicationform/submit">
 
                 <div class="photo-container mb-3">
                     <label>Photo</label>
@@ -110,10 +110,56 @@
                     <label>Date</label>
                     <input class="form-control" name="application-date" type="date" />
                 </div>
+                <div class="mb-3">
+                    <label>Fee Payments</label>
+                    <div class="table-responsive">
+                        <table class="table table-light table-bordered align-middle">
+                            <thead>
+                                <tr>
+                                    <td colspan="2">
+                                        <button class="btn btn-success" role="button">Add</button>
+                                        <button class="btn btn-warning" role="button">Edit</button>
+                                        <button class="btn btn-danger" role="button">Delete</button>
+                                        <button class="btn btn-secondary" role="button">Reset</button>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="payment-id" value="0" type="checkbox" />
+                                            <input class="form-control" name="payment-date" type="date" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input class="form-control text-end" name="payment-amount" type="text" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="">
+                                <tr>
+                                    <td><div class="empty-space-row"></div></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Total amount
+                                    </td>
+                                    <td>
+                                        <input class="form-control text-end" name="payment-total" type="text" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-                <div class="d-grid mt-5 mb-3">
-                    <button class="btn btn-primary mb-3" type="submit">Submit</button>
-                    <button class="btn btn-light" type="submit">Cancel</button>
+                <div class="d-flex justify-content-center mt-5">
+                    <button class="btn btn-primary mx-3" type="submit">Submit</button>
+                    <button class="btn btn-light mx-3" type="submit">Cancel</button>
                 </div>
 
             </form>

@@ -11,7 +11,7 @@ exit;
 
 
 /*
-Now login into mysql as institutedbuer 
+Now login into mysql as institutedbuer and setup tables as below
 */
 
 use institute;

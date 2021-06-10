@@ -31,7 +31,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/applicationform">Application</a>
+                            <a class="nav-link active" aria-current="page" href="/students">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/applicationform">Application Form</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,6 +73,8 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
+    <script src="/modules.1.js"></script>
+    <script src="/loader.1.js"></script>
 </body>
 
 </html>

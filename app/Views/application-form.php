@@ -3,7 +3,7 @@
 
 <?=$this->section('content')?>
 
-<div class="application-form-wrap mt-5">
+<div class="module application-form-wrap mt-5"  data-module="StudentApplicationForm">
 
     <h3 class="page-title">Application Form</h3>
 
@@ -159,8 +159,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center mt-5">
-                    <button type="submit" class="btn btn-primary mx-3" type="submit">Submit</button>
-                    <button type="button" class="btn btn-light mx-3" type="submit">Cancel</button>
+                    <button type="submit" class="btn btn-primary mx-3">Submit</button>
+                    <button type="button" class="btn btn-light mx-3">Cancel</button>
                 </div>
 
             </form>
@@ -169,30 +169,5 @@
 
 
 </div>
-
-<script>
-
-window.addEventListener('DOMContentLoaded', (event) => {
-    registerStudentPhotoChange();
-});
-
-
-function registerStudentPhotoChange() {
-    let photoImg = document.getElementById('student-photo-img');
-    let photoInput = document.getElementById('student-photo-input');
-    photoInput.onchange = function() {
-        let file = this.files[0];
-        if (file) {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-                let data = e.target.result;
-                photoImg.setAttribute('src', data);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-}
-
-</script>
 
 <?=$this->endSection()?>

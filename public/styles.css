@@ -23,18 +23,20 @@ nav a:hover {
 
 .signin-form-wrap .form {
     width: 80%;
-    border: 1px solid #aaa;
+    /* border: 1px solid #aaa; */
     border-radius: 4px;
+    background-color: #eee;
 }
 
 .signin-form-wrap .form .title {
     padding: 15px;
     /* background-color: #ff7800; */
-    background-color: #f7f7f7;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
+    /* background-color: #f7f7f7; */
+    /* border-top-left-radius: 2px; */
+    /* border-top-right-radius: 2px; */
     /* color: white; */
-    color: #777;
+    /* color: #777; */
+    border-bottom: 1px solid #fff;
 }
 
 .signin-form-wrap .form .content {
@@ -43,7 +45,7 @@ nav a:hover {
 
 @media (min-width: 640px) {
     .signin-form-wrap .form {
-        width: 300px;
+        width: 320px;
     }
 }
 
@@ -76,8 +78,6 @@ nav a:hover {
     overflow: hidden;
 }
 
-.student-photo {}
-
 .student-photo .file-input {
     position: absolute;
     font-size: 100px;
@@ -102,12 +102,12 @@ footer {
     font-size: 15px;
 }
 
-
 label {
     font-size: 1rem;
-    color: blue;
+    color: #3380d2;
     margin-bottom: 3px;
 }
+
 .form-control {
     padding: 0.25rem;
 }

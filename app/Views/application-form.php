@@ -116,7 +116,7 @@
                         <table class="table table-light table-bordered align-middle">
                             <thead>
                                 <tr>
-                                    <td colspan="2">
+                                    <td colspan="2" class="fee-buttons">
                                         <button class="btn btn-success" role="button">Add</button>
                                         <button class="btn btn-warning" role="button">Edit</button>
                                         <button class="btn btn-danger" role="button">Delete</button>

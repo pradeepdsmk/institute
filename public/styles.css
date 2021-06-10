@@ -96,3 +96,8 @@ nav a:hover {
 footer {
     min-height: 100px;
 }
+
+.fee-buttons > button {
+    margin-bottom: 5px;
+    font-size: 15px;
+}

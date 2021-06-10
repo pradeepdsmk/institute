@@ -10,7 +10,7 @@
     <!-- CSS only -->
     <link href="/bootstrap.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.1.css" />
 
 </head>
 

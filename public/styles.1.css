@@ -133,3 +133,14 @@ td .form-check .form-check-input {
     margin: 0 10px 0 0;
     flex: 0 0 1em;
 }
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}

@@ -6,7 +6,7 @@ namespace App\Controllers;
 class Access extends BaseController
 {
     public function index()
-    {
+    {        
         if($this->auth->isLoggedIn()) {
             return redirect()->to('/applicationform');
         }

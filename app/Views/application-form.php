@@ -1,7 +1,7 @@
-<?= $this->extend('default-layout') ?>
+<?=$this->extend('default-layout')?>
 
 
-<?= $this->section('content') ?>
+<?=$this->section('content')?>
 
 <div class="application-form-wrap mt-5">
 
@@ -13,13 +13,14 @@
 
                 <div class="photo-container mb-3">
                     <label>Photo</label>
-                    <div class="student-photo" style="background-image: url('/student-example.jpg')">
+                    <div class="student-photo">
+                        <img id="student-photo-img" class="student-photo-img" src="/student-example.jpg" />
                         <div class="btn btn-light edit-image-button" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                             </svg>
-                            <input type="file" class="file-input" name="student-photo" />
+                            <input type="file" id="student-photo-input" class="file-input" name="student-photo" accept="image/png, image/jpeg" />
                         </div>
                     </div>
                 </div>
@@ -169,4 +170,29 @@
 
 </div>
 
-<?= $this->endSection() ?>
+<script>
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    registerStudentPhotoChange();
+});
+
+
+function registerStudentPhotoChange() {
+    let photoImg = document.getElementById('student-photo-img');
+    let photoInput = document.getElementById('student-photo-input');
+    photoInput.onchange = function() {
+        let file = this.files[0];
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                let data = e.target.result;
+                photoImg.setAttribute('src', data);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+}
+
+</script>
+
+<?=$this->endSection()?>

@@ -64,21 +64,30 @@ nav a:hover {
     }
 }
 
-.application-form .photo-container .student-photo {
+.application-form .student-photo {
     /* float: right; */
+    border: 1px solid #ccc;
+    position: relative;
+    width: 200px;
+}
+
+.application-form .student-photo .student-photo-img {
+    display: block;
     width: 200px;
     height: 200px;
-    border: 1px solid #ccc;
-    background-size: contain;
+    object-position: center;
+    object-fit: cover;
+    margin-left: -1px;
+    margin-top: -1px;
+    border-bottom: 1px solid #ccc;
 }
 
-.photo-container .edit-image-button {
-    margin: 5px;
+.application-form .student-photo .edit-image-button {
+    width: 100%;
     position: relative;
-    overflow: hidden;
 }
 
-.student-photo .file-input {
+.application-form .student-photo .file-input {
     position: absolute;
     font-size: 100px;
     opacity: 0;

@@ -117,15 +117,15 @@
                             <thead>
                                 <tr>
                                     <td colspan="2" class="fee-buttons">
-                                        <button class="btn btn-success" role="button">Add</button>
-                                        <button class="btn btn-warning" role="button">Edit</button>
-                                        <button class="btn btn-danger" role="button">Delete</button>
-                                        <button class="btn btn-secondary" role="button">Reset</button>
+                                        <button type="button" class="btn btn-success" role="button">Add</button>
+                                        <button type="button" class="btn btn-warning" role="button">Edit</button>
+                                        <button type="button" class="btn btn-danger" role="button">Delete</button>
+                                        <button type="button" class="btn btn-secondary" role="button">Reset</button>
                                     </td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="fee-payment-row">
                                     <td>
                                         <div class="form-check">
                                             <input class="form-check-input" name="payment-id" value="0" type="checkbox" />
@@ -133,7 +133,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <input class="form-control text-end" name="payment-amount" type="text" />
+                                        <input class="form-control text-end" name="payment-amount" type="text" placeholder="Amount" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -158,8 +158,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center mt-5">
-                    <button class="btn btn-primary mx-3" type="submit">Submit</button>
-                    <button class="btn btn-light mx-3" type="submit">Cancel</button>
+                    <button type="submit" class="btn btn-primary mx-3" type="submit">Submit</button>
+                    <button type="button" class="btn btn-light mx-3" type="submit">Cancel</button>
                 </div>
 
             </form>

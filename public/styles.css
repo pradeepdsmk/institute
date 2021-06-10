@@ -97,7 +97,17 @@ footer {
     min-height: 100px;
 }
 
-.fee-buttons > button {
+.fee-buttons>button {
     margin-bottom: 5px;
     font-size: 15px;
+}
+
+
+label {
+    font-size: 1rem;
+    color: blue;
+    margin-bottom: 3px;
+}
+.form-control {
+    padding: 0.25rem;
 }

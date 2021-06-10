@@ -144,3 +144,7 @@ td .form-check .form-check-input {
         padding-left: 1rem;
     }
 }
+
+thead {
+    color: #3380d2;
+}

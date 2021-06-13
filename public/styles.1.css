@@ -64,14 +64,14 @@ nav a:hover {
     }
 }
 
-.application-form .student-photo {
+.image-upload-control {
     /* float: right; */
     border: 1px solid #ccc;
     position: relative;
     width: 200px;
 }
 
-.application-form .student-photo .student-photo-img {
+.image-upload-control>.image-preview {
     display: block;
     width: 200px;
     height: 200px;
@@ -82,12 +82,12 @@ nav a:hover {
     border-bottom: 1px solid #ccc;
 }
 
-.application-form .student-photo .edit-image-button {
+.image-upload-control>.edit-image-button {
     width: 100%;
     position: relative;
 }
 
-.application-form .student-photo .file-input {
+.image-upload-control>.edit-image-button .file-input {
     position: absolute;
     font-size: 100px;
     opacity: 0;
@@ -107,7 +107,7 @@ footer {
 }
 
 .fee-buttons>button {
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     font-size: 15px;
 }
 
@@ -147,4 +147,25 @@ td .form-check .form-check-input {
 
 thead {
     color: #3380d2;
+}
+
+.page-alert {
+    position: fixed;    
+    color: white;
+    bottom: 15px;
+    left: 0;
+    right: 0;    
+    text-align: center;
+    z-index: 100;
+}
+
+.page-alert .page-alert-content {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #000;
+    position: relative;
+    bottom: -200px;
+    transform: translateY(-200px);
+    transition: all 2s ease-in;
 }

@@ -1,12 +1,20 @@
 var InstituteModules = {
     StudentApplicationForm: class {
-        constructor() {
+
+        /**
+         * 
+         * @param {HTMLElement} rootElement 
+         */
+        constructor(rootElement) {
+            this.rootElement = rootElement;
             this.registerStudentPhotoChange();
         }
-    
+
         registerStudentPhotoChange() {
-            let photoImg = document.getElementById('student-photo-img');
-            let photoInput = document.getElementById('student-photo-input');
+            // let photoImg = document.getElementById('student-photo-img');
+            // let photoInput = document.getElementById('student-photo-input');
+            let photoImg = this.rootElement.querySelector('img');
+            let photoInput = this.rootElement.querySelector('input');
             photoInput.onchange = function () {
                 let file = this.files[0];
                 if (file) {
@@ -19,5 +27,5 @@ var InstituteModules = {
                 }
             };
         }
-    }    
+    }
 }

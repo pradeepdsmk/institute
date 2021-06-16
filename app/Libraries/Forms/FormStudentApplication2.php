@@ -23,7 +23,7 @@ class FormStudentApplication2 extends Form2
             'technicalQualification' => F::text('Technical Qualification'),
             'courseJoined' => F::text('Course Joined'),
             'collegeOrSchoolName' => F::text('College / School Name'),
-            'referenceFrom' => F::text('Reference From'),
+            'referenceFrom' => F::radioGroup('Reference From', [F::radio('Friend', 'friend', ['referenceFromText' => F::text('')]), F::radio('TV Ad', 'tv-ad'), F::radio('Demo', 'demo')]),
             'contactNumber' => F::number('Contact No.'),
             'emailId' => F::email('E-Mail ID'),
             'facebook' => F::text('Facebook'),

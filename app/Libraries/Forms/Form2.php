@@ -33,6 +33,16 @@ class FormControl
         }
         return $randomString;
     }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function setValue($data)
+    {
+        $this->value = $data[$this->name];
+    }
 }
 
 class FormFileUploadControl extends FormControl
@@ -50,6 +60,7 @@ class FormSimpleTextControl extends FormControl
         $id = $this->randomId();
         $value = htmlspecialchars($this->value);
         return <<<HEREDOC
+
             <div class="mb-3">
                 <label for="$id">$this->label</label>
                 <input id="$id" class="form-control" type="text" name="$this->name" value="$value" />                
@@ -65,6 +76,7 @@ class FormBlockTextControl extends FormControl
         $id = $this->randomId();
         $value = htmlspecialchars($this->value);
         return <<<HEREDOC
+
             <div class="mb-3">
                 <label for="$id">$this->label</label>
                 <textarea id="$id" class="form-control" name="$this->name">$value</textarea>
@@ -80,6 +92,7 @@ class FormEmailControl extends FormControl
         $id = $this->randomId();
         $value = htmlspecialchars($this->value);
         return <<<HEREDOC
+
             <div class="mb-3">
                 <label for="$id">$this->label</label>
                 <input id="$id" class="form-control" type="email" name="$this->name" value="$value" />                
@@ -95,6 +108,7 @@ class FormPasswordControl extends FormControl
         $id = $this->randomId();
         $value = htmlspecialchars($this->value);
         return <<<HEREDOC
+
             <div class="mb-3">
                 <label for="$id">$this->label</label>
                 <input id="$id" class="form-control" type="password" name="$this->name" value="$value" />                
@@ -110,6 +124,7 @@ class FormNumberControl extends FormControl
         $id = $this->randomId();
         $value = htmlspecialchars($this->value);
         return <<<HEREDOC
+
             <div class="mb-3">
                 <label for="$id">$this->label</label>
                 <input id="$id" class="form-control" type="number" name="$this->name" value="$value" />                
@@ -125,6 +140,7 @@ class FormDateControl extends FormControl
         $id = $this->randomId();
         $value = htmlspecialchars($this->value);
         return <<<HEREDOC
+
             <div class="mb-3">
                 <label for="$id">$this->label</label>
                 <input id="$id" class="form-control" type="date" name="$this->name" value="$value" />                
@@ -135,10 +151,98 @@ HEREDOC;
 
 class FormRadioButtonControl extends FormControl
 {
+    public $childControl;
+
+    public function __construct($label, $value, $childControl = [])
+    {
+        parent::__construct($label, $value);
+        $this->childControl = $childControl;
+
+        if (!empty($childControl)) {
+            foreach ($childControl as $name => $control) {
+                $control->setName($name);
+            }
+        }
+    }
+
+    public function setValue($data)
+    {
+        $this->value = $data[$this->name];
+
+        if (!empty($childControl)) {
+            foreach ($this->childControl as $name => $control) {
+                $control->setValue($data);
+            }
+        }
+    }
+
+    public function innerHTML()
+    {
+        $id = $this->randomId();
+        $value = htmlspecialchars($this->value);
+
+        $childControlText = '';
+        
+        if (!empty($this->childControl)) {
+            foreach ($this->childControl as $name => $control) {
+                $childControlText .= <<<HEREDOC
+                <input class="form-control" type="text" name="$name" value="$control->value" />
+HEREDOC;
+            }
+        }
+
+        return <<<HEREDOC
+
+                <div class="form-check">
+                    <input id="$id" class="form-check-input" type="radio" name="$this->name"  value="$value" />
+                    <label for="$id" class="form-check-label" >$this->label</label>
+                    $childControlText
+                </div>
+HEREDOC;
+    }
 }
 
-class FormRadioGroupControl extends FormControl {
-    
+class FormRadioGroupControl extends FormControl
+{
+    public $controls;
+
+    public function __construct($label, $controls)
+    {
+        parent::__construct($label);
+        $this->controls = $controls;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+        foreach ($this->controls as $control) {
+            $control->setName($name);
+        }
+
+    }
+
+    public function setValue($data)
+    {
+        foreach ($this->controls as $control) {
+            $control->setValue($data);
+        }
+    }
+
+    public function innerHTML()
+    {
+        $controlsHTML = '';
+        foreach ($this->controls as $control) {
+            $controlsHTML .= $control->innerHTML();
+        }
+
+        return <<<HEREDOC
+        
+            <div class="mb-3">
+                <label>$this->label</label>
+                $controlsHTML
+            </div>
+HEREDOC;
+    }
 }
 
 class FormCheckboxControl extends FormControl
@@ -158,6 +262,7 @@ class FormImageUploadControl extends FormFileUploadControl
     {
         $id = $this->randomId();
         return <<<HEREDOC
+
             <div class="image-upload-control-wrap mb-3" data-component="ImageUploadComponent">
                 <label>$this->label</label>
                 <div class="image-upload-control">
@@ -170,7 +275,7 @@ class FormImageUploadControl extends FormFileUploadControl
                         <input type="file" id="$id" class="file-input" name="$this->name" accept="image/png, image/jpeg" />
                     </div>
                 </div>
-            </div>
+            </div>            
 HEREDOC;
     }
 }
@@ -186,55 +291,61 @@ class Form2
 
     public function __construct($data)
     {
-        foreach($this->controls as $name => $control) {            
-            $control->name = $name;            
-            if(isset($data[$name])) {
-                $control->value = $data[$name]; 
+        foreach ($this->controls as $name => $control) {
+            $control->setName($name);
+            if (isset($data[$name])) {
+                $control->setValue($data);
             } else {
-               log_message('debug', "$this->title : $name not found in initialization data");
+                log_message('debug', "$this->title : $name not found in initialization data");
             }
         }
     }
 }
 
-class F {
-    public static function text($label) {
+class F
+{
+    public static function text($label)
+    {
         return new FormSimpleTextControl($label);
     }
 
-    public static function textarea($label) {
+    public static function textarea($label)
+    {
         return new FormBlockTextControl($label);
     }
 
-    public static function email($label) {
+    public static function email($label)
+    {
         return new FormEmailControl($label);
     }
 
-    public static function password($label) {
+    public static function password($label)
+    {
         return new FormPasswordControl($label);
     }
 
-    public static function number($label) {
+    public static function number($label)
+    {
         return new FormNumberControl($label);
     }
 
-    public static function date($label) {
+    public static function date($label)
+    {
         return new FormDateControl($label);
     }
 
-    public static function imageUpload($label) {
+    public static function imageUpload($label)
+    {
         return new FormImageUploadControl($label);
     }
 
-    public static function radio($label, $value) {
-        return new FormRadioButtonControl($label, $value);
+    public static function radio($label, $value, $asText = false)
+    {
+        return new FormRadioButtonControl($label, $value, $asText);
     }
 
-    public static function radioWithText($label, $value) {
-        return new FormRadioButtonControl($label, $value);
-    }
-
-    public static function radioGroup($label, $controls) {
+    public static function radioGroup($label, $controls)
+    {
         return new FormRadioGroupControl($label, $controls);
     }
 }

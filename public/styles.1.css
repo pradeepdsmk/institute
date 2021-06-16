@@ -69,6 +69,8 @@ nav a:hover {
     border: 1px solid #ccc;
     position: relative;
     width: 200px;
+    overflow: hidden;
+    border-radius: 4px;
 }
 
 .image-upload-control>.image-preview {

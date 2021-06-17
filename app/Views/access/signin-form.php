@@ -7,6 +7,7 @@
 <div class="signin-form-wrap">
 
     <form method="post" action="/access/signin" class="form">
+        <?= csrf_field() ?>
         <h3 class="title mb-3">Signin</h3>
 
         <div class="content">

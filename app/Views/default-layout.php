@@ -10,6 +10,7 @@
     <!-- CSS only -->
     <link href="/bootstrap.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="/animate.4.1.1.min.css" />
     <link rel="stylesheet" href="/styles.1.css" />
 
 </head>

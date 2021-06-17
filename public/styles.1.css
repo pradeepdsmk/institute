@@ -152,11 +152,11 @@ thead {
 }
 
 .page-alert {
-    position: fixed;    
+    position: fixed;
     color: white;
     bottom: 15px;
     left: 0;
-    right: 0;    
+    right: 0;
     text-align: center;
     z-index: 100;
 }
@@ -164,10 +164,12 @@ thead {
 .page-alert .page-alert-content {
     display: inline-block;
     margin: 0 auto;
-    padding: 15px;
+    padding: 7px 15px;
     background-color: #000;
     position: relative;
-    bottom: -200px;
-    transform: translateY(-200px);
-    transition: all 2s ease-in;
+    /* bottom: -200px; */
+    /* transform: translateY(-200px); */
+    /* transition: all 0.2s ease-in-out; */
+    max-width: 80%;
+    border-radius: 6px;
 }

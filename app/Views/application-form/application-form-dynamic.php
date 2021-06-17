@@ -172,7 +172,7 @@
 
 <?php if (!empty($alert)) : ?>
     <div class="page-alert">
-        <div class="page-alert-content">
+        <div class="animate__animated animate__slideInUp page-alert-content">
             <?= $alert ?>
         </div>
     </div>

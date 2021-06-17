@@ -12,9 +12,9 @@ var InstituteModules = {
 
         registerStudentPhotoChange() {
             // let photoImg = document.getElementById('student-photo-img');
-            // let photoInput = document.getElementById('student-photo-input');
-            let photoImg = this.rootElement.querySelector('img');
-            let photoInput = this.rootElement.querySelector('input');
+            // let photoInput = document.getElementById('student-photo-input');            
+            let photoInput = this.rootElement.querySelector('input[name="studentPhoto"]');
+            let photoImg = photoInput.parentNode.parentNode.querySelector('img');
             photoInput.onchange = function () {
                 let file = this.files[0];
                 if (file) {

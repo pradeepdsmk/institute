@@ -11,7 +11,7 @@
     <link href="/bootstrap.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="/animate.4.1.1.min.css" />
-    <link rel="stylesheet" href="/styles.1.css" />
+    <link rel="stylesheet" href="/styles.2.css" />
 
 </head>
 
@@ -74,7 +74,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
-    <script src="/modules.1.js"></script>
+    <script src="/modules.2.js"></script>
     <script src="/loader.1.js"></script>
 </body>
 

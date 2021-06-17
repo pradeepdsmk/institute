@@ -43,6 +43,11 @@ class FormControl
     {
         $this->value = $data[$this->name];
     }
+
+    public function getFields(&$fields)
+    {
+        $fields[] = $this->name;
+    }
 }
 
 class FormFileUploadControl extends FormControl
@@ -169,9 +174,21 @@ class FormRadioButtonControl extends FormControl
     {
         $this->value = $data[$this->name];
 
-        if (!empty($childControl)) {
+        if (!empty($this->childControl)) {
             foreach ($this->childControl as $name => $control) {
                 $control->setValue($data);
+            }
+        }
+    }
+
+    public function getFields(&$fields)
+    {
+        if (!in_array($this->name, $fields)) {
+            $fields[] = $this->name;
+        }
+        if (!empty($this->childControl)) {
+            foreach ($this->childControl as $name => $control) {
+                $control->getFields($fields);
             }
         }
     }
@@ -182,7 +199,7 @@ class FormRadioButtonControl extends FormControl
         $value = htmlspecialchars($this->value);
 
         $childControlText = '';
-        
+
         if (!empty($this->childControl)) {
             foreach ($this->childControl as $name => $control) {
                 $childControlText .= <<<HEREDOC
@@ -218,13 +235,23 @@ class FormRadioGroupControl extends FormControl
         foreach ($this->controls as $control) {
             $control->setName($name);
         }
-
     }
 
     public function setValue($data)
     {
         foreach ($this->controls as $control) {
             $control->setValue($data);
+        }
+    }
+
+    public function getFields(&$fields)
+    {
+        $groupFields = [];
+        foreach ($this->controls as $control) {
+            $control->getFields($groupFields);
+        }
+        foreach($groupFields as $field) {
+            $fields[] = $field;
         }
     }
 
@@ -298,6 +325,13 @@ class Form2
             } else {
                 log_message('debug', "$this->title : $name not found in initialization data");
             }
+        }
+    }
+
+    public function getFields(&$fields)
+    {
+        foreach ($this->controls as $name => $control) {
+            $control->getFields($fields);
         }
     }
 }

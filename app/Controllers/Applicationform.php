@@ -20,8 +20,13 @@ class Applicationform extends BaseController
 
     public function submit()
     {
-        log_message('debug', print_r($_POST, true));
-        log_message('debug', print_r($_FILES, true));
+        log_message('debug', 'applicationform::submit post[] '. print_r($_POST, true));
+        log_message('debug', 'applicationform::submit files[]'. print_r($_FILES, true));
+
+
+        $fields = [];
+        $this->form->getFields($fields);
+        log_message('debug', 'applicationform::submit formfields[] ' . print_r($fields, true));
 
         $alert = 'Saved. Redirecting...';
         // header('Refresh:30 url=' . '/applicationform');

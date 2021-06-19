@@ -1,65 +1,61 @@
-
 <?php
-/*
+
 namespace App\Libraries\Forms;
+
+include __DIR__ . '/FormControl.php';
+include __DIR__ . '/FormSimpleTextControl.php';
+include __DIR__ . '/FormDateControl.php';
+include __DIR__ . '/FormEmailControl.php';
+include __DIR__ . '/FormFileUploadControl.php';
+include __DIR__ . '/FormImageUploadControl.php';
+include __DIR__ . '/FormNumberControl.php';
+include __DIR__ . '/FormPasswordControl.php';
+include __DIR__ . '/FormHiddenControl.php';
+include __DIR__ . '/FormRadioButtonControl.php';
+include __DIR__ . '/FormRadioGroupControl.php';
+
+
 
 class FormStudentApplication extends Form
 {
-    public static $title = 'Application Form';
-    
-    public $studentPhoto;
-    public $applicationNumber;
-    public $branch;
-    public $studentName;
-    public $fatherOrHusbandName;
-    public $permanentAddress;
-    public $communicationAddress;
-    public $gender;
-    public $dateOfBirth;
-    public $educationQualification;
-    public $technicalQualification;
-    public $courseJoined;
-    public $collegeOrSchoolName;
-    public $referenceFrom;
-    public $contactNumber;
-    public $emailId;
-    public $facebook;
-    public $applicationDate;
-
     public function __construct($data = [])
     {
-        $this->studentPhoto = new FormImageUploadControl('Photo');
-        $this->applicationNumber = new FormSimpleTextControl('Application Number');
-        $this->branch = new FormSimpleTextControl('Branch');
-        $this->studentName = new FormSimpleTextControl('Student Name');
-        $this->fatherOrHusbandName = new FormSimpleTextControl('Father\'s/Husband\'s Name');
-        $this->permanentAddress = new FormBlockTextControl('Permanent Address');
-        $this->communicationAddress = new FormBlockTextControl('Address for Communication');
-        $this->gender = new FormSimpleTextControl('Sex');
-        $this->dateOfBirth = new FormSimpleTextControl('Date of Birth');
-        $this->educationQualification = new FormSimpleTextControl('Education Qualification');
-        $this->technicalQualification = new FormSimpleTextControl('Technical Qualification');
-        $this->courseJoined = new FormSimpleTextControl('Course Joined');
-        $this->collegeOrSchoolName = new FormSimpleTextControl('College / School Name');
-        $this->referenceFrom = new FormSimpleTextControl('Reference From');
-        $this->contactNumber = new FormSimpleTextControl('Contact No.');
-        $this->emailId = new FormSimpleTextControl('E-Mail ID');
-        $this->facebook = new FormSimpleTextControl('Facebook');
-        $this->applicationDate = new FormSimpleTextControl('Date');
+        $this->title = 'Application Form';
+
+        $this->controls = [
+            'id' => F::hidden(),
+            'studentPhoto' => F::imageUpload('Photo'),
+            'applicationNumber' => F::text('Application Number'),
+            'registrationNumber' => F::text('Registration Number'),
+            'branch' => F::text('Branch'),
+            'studentName' => F::text('Student Name'),
+            'fatherOrHusbandName' => F::text('Father\'s/Husband\'s Name'),
+            'permanentAddress' => F::textarea('Permanent Address'),
+            'communicationAddress' => F::textarea('Address for Communication'),
+            'sex' => F::radioGroup('Sex', [
+                F::radio('Male', 'm'),
+                F::radio('Female', 'f')
+            ]),
+            'dateOfBirth' => F::date('Date of Birth'),
+            'educationQualification' => F::text('Education Qualification'),
+            'technicalQualification' => F::text('Technical Qualification'),
+            'courseJoined' => F::text('Course Joined'),
+            'collegeOrSchoolName' => F::text('College / School Name'),
+            'referenceFrom' => F::radioGroup('Reference From', [
+                F::radio('Friend', 'friend', [
+                    'referenceFromText' => F::text('')
+                ]),
+                F::radio('TV Ad', 'tv-ad'),
+                F::radio('Demo', 'demo')
+            ]),
+            'contactNumber' => F::number('Contact No.'),
+            'emailId' => F::email('E-Mail ID'),
+            'facebook' => F::text('Facebook'),
+            'applicationDate' => F::date('Application Date'),
+            'courseFee' => F::number('Course Fee'),
+            'initialPayment' => F::number('Initial Payment')
+        ];
 
         parent::__construct($data);
     }
 }
-
-class SigninForm extends Form {
-    public static $title = 'Signin';
-    public $username;
-    public $password;
-
-    public function __construct($data = []) {
-        $this->username = new FormSimpleTextControl('Username');
-        $this->password = new FormPasswordControl('Password');
-    }
-}
-
-*/

@@ -2,34 +2,32 @@
 
 namespace App\Controllers;
 
-use App\Libraries\Forms\FormStudentApplication2;
+use App\Libraries\Forms\FormStudentApplication;
 
 class Applicationform extends BaseController
 {
-    private $form;
-
-    public function __construct()
-    {
-        $this->form = new FormStudentApplication2([]);
-    }
+    private $form = null;
 
     public function index()
     {
-        return view('application-form/application-form-dynamic', ['form' => $this->form]);
-    }
-
-    public function submit()
-    {
-        log_message('debug', 'applicationform::submit post[] '. print_r($_POST, true));
-        log_message('debug', 'applicationform::submit files[]'. print_r($_FILES, true));
-
-
-        $fields = [];
-        $this->form->getFields($fields);
-        log_message('debug', 'applicationform::submit formfields[] ' . print_r($fields, true));
-
-        $alert = 'Saved. Redirecting...';
-        // header('Refresh:30 url=' . '/applicationform');
-        return view('application-form/application-form-dynamic', ['form' => $this->form, 'alert' => $alert]);
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == 'GET') {
+            $this->form = new FormStudentApplication();
+            return view('application-form/application-form-dynamic', ['form' => $this->form]);
+        } else if ($method == 'POST') {
+            log_message('debug', 'applicationform::index $_POST ' . print_r($_POST, true));
+            log_message('debug', 'applicationform::index $_FILES ' . print_r($_FILES, true));
+            $this->form = FormStudentApplication::fromRequest();
+            if ($this->form->isValid()) {
+                $this->db->update('application', $this->form->data());
+                $this->form->reset();
+                $alert = 'Saved';
+            } else {
+                $alert = 'Errors detected';
+            }
+            return view('application-form/application-form-dynamic', ['form' => $this->form, 'alert' => $alert]);
+        } else {
+            return redirect()->to('/applicationform');
+        }
     }
 }

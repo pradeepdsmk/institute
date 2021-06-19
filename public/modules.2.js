@@ -8,6 +8,7 @@ var InstituteModules = {
         constructor(rootElement) {
             this.rootElement = rootElement;
             this.registerStudentPhotoChange();
+            this.registerReferenceFromChange();
         }
 
         registerStudentPhotoChange() {
@@ -26,6 +27,29 @@ var InstituteModules = {
                     reader.readAsDataURL(file);
                 }
             };
+        }
+
+        registerReferenceFromChange() {
+            let referenceFromText = this.rootElement.querySelector('input[name="referenceFromText"]');
+            let radioFriend = referenceFromText.parentNode.querySelector('input[name="referenceFrom"]');
+            let allReferenceRadios = this.rootElement.querySelectorAll('input[name="referenceFrom"]');
+
+            allReferenceRadios.forEach((element, index) => {
+                element.addEventListener('change', (e) => {
+                    this.updatereferenceFromText(radioFriend, referenceFromText);
+                });
+            });
+
+            this.updatereferenceFromText(radioFriend, referenceFromText);
+        }
+
+        updatereferenceFromText(radioFriend, referenceFromText) {
+            if (!radioFriend.checked) {
+                referenceFromText.value = '';
+                referenceFromText.disabled = true;
+            } else {
+                referenceFromText.disabled = false;
+            }
         }
     }
 }

@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="application-form-wrap row justify-content-center">
-            <form class="form application-form col col-sm-10 col-md-8 my-3" method="post" action="/applicationform/submit" enctype="multipart/form-data">
+            <form class="form application-form col col-sm-10 col-md-8 my-3" method="post" action="/applicationform" enctype="multipart/form-data">
                 <?= csrf_field() ?>
 
                 <?php foreach ($form->controls as $name => $control) : ?>

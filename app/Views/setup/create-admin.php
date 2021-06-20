@@ -8,6 +8,8 @@
     <form method="post" action="/setup/create_admin" class="form">
         <h3 class="title mb-3">Create Admin</h3>
 
+        <?= csrf_field(); ?>
+
         <div class="content">
             <?php if (isset($signin_error) && ($signin_error != '')) : ?>
                 <div class="alert alert-warning" role="alert">

@@ -33,7 +33,11 @@ class FormRadioButtonControl extends FormControl
 
         if (!empty($this->childControl)) {
             foreach ($this->childControl as $name => $control) {
-                $control->setValue($data);
+                if(isset($data[$name])) {
+                    $control->setValue($data);
+                } else {
+                    log_message('debug', "$name not found in initialization data");
+                }                
             }
         }
     }

@@ -2,6 +2,18 @@
 
 namespace App\Libraries\Forms;
 
+include __DIR__ . '/FormControl.php';
+include __DIR__ . '/FormSimpleTextControl.php';
+include __DIR__ . '/FormDateControl.php';
+include __DIR__ . '/FormEmailControl.php';
+include __DIR__ . '/FormFileUploadControl.php';
+include __DIR__ . '/FormImageUploadControl.php';
+include __DIR__ . '/FormNumberControl.php';
+include __DIR__ . '/FormPasswordControl.php';
+include __DIR__ . '/FormHiddenControl.php';
+include __DIR__ . '/FormRadioButtonControl.php';
+include __DIR__ . '/FormRadioGroupControl.php';
+
 class F
 {
     public static function text($label)
@@ -57,5 +69,9 @@ class F
     public static function hidden()
     {
         return new FormHiddenControl('');
+    }    
+
+    public static function form($label, $controls) {
+        return new Form($label, $controls);
     }
 }

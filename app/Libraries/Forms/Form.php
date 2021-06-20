@@ -19,7 +19,23 @@ class Form
     public $title = 'Form';
     public $controls = [];
 
-    public function __construct($data)
+    public function __construct($label, &$controls)
+    {
+        $this->label = $label;
+        $this->controls = $controls;
+        foreach ($this->controls as $name => $control) {
+            $control->setName($name);            
+        }
+    }
+
+    public function getFields(&$fields)
+    {
+        foreach ($this->controls as $name => $control) {
+            $control->getFields($fields);
+        }
+    }
+
+    public function fromData($data)
     {
         foreach ($this->controls as $name => $control) {
             $control->setName($name);
@@ -31,23 +47,11 @@ class Form
         }
     }
 
-    public function getFields(&$fields)
+    public function fromRequest()
     {
-        foreach ($this->controls as $name => $control) {
-            $control->getFields($fields);
-        }
-    }
-
-    public static function fromRequest()
-    {
-        $classname = get_called_class();
-        log_message('debug', 'Form2::fromRequest called class ' . $classname);
-        $obj = new $classname();
-        foreach ($obj->controls as $name => $control) {
+        foreach($this->controls as $name => $control) {
             $control->setValueFromRequest();
         }
-
-        return $obj;
     }
 
     public function isValid(): bool

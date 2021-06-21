@@ -74,7 +74,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
-    <script src="/modules.2.js"></script>
+    <script src="/modules.3.js"></script>
     <script src="/loader.1.js"></script>
 </body>
 

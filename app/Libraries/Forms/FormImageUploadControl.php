@@ -4,8 +4,12 @@ namespace App\Libraries\Forms;
 
 class FormImageUploadControl extends FormFileUploadControl
 {
+    private $fromRequest = false;
+
     public function setValueFromRequest()
     {
+        $this->fromRequest = true;
+
         $file = $this->request->getFile($this->name);
 
         if (!$file->isValid() || $file->hasMoved()) {
@@ -48,5 +52,17 @@ class FormImageUploadControl extends FormFileUploadControl
                 </div>
             </div>            
 HEREDOC;
+    }
+
+    public function data(&$data)
+    {
+        if (!$this->fromRequest) {
+            $data[$this->name] = $this->value;
+            return;
+        }
+
+        if ($this->value != '') {
+            $data[$this->name] = $this->value;
+        }    
     }
 }

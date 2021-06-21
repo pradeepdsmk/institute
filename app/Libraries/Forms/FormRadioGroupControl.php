@@ -60,4 +60,10 @@ class FormRadioGroupControl extends FormControl
             </div>
 HEREDOC;
     }
+
+    public function data(&$data) {
+        foreach ($this->controls as $control) {
+            $control->data($data);
+        }
+    }
 }

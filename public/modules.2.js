@@ -12,9 +12,7 @@ var InstituteModules = {
         }
 
         registerStudentPhotoChange() {
-            // let photoImg = document.getElementById('student-photo-img');
-            // let photoInput = document.getElementById('student-photo-input');            
-            let photoInput = this.rootElement.querySelector('input[name="studentPhoto"]');
+            let photoInput = this.rootElement.querySelector('input[name="studentphoto"]');
             let photoImg = photoInput.parentNode.parentNode.querySelector('img');
             photoInput.onchange = function () {
                 let file = this.files[0];
@@ -30,9 +28,9 @@ var InstituteModules = {
         }
 
         registerReferenceFromChange() {
-            let referenceFromText = this.rootElement.querySelector('input[name="referenceFromText"]');
-            let radioFriend = referenceFromText.parentNode.querySelector('input[name="referenceFrom"]');
-            let allReferenceRadios = this.rootElement.querySelectorAll('input[name="referenceFrom"]');
+            let referenceFromText = this.rootElement.querySelector('input[name="referencefromtext"]');
+            let radioFriend = referenceFromText.parentNode.querySelector('input[name="referencefrom"]');
+            let allReferenceRadios = this.rootElement.querySelectorAll('input[name="referencefrom"]');
 
             allReferenceRadios.forEach((element, index) => {
                 element.addEventListener('change', (e) => {

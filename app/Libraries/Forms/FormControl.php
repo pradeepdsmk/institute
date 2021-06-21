@@ -54,4 +54,8 @@ class FormControl
     {
         $fields[] = $this->name;
     }
+
+    public function data(&$data) {
+        $data[$this->name] = $this->value;
+    }
 }

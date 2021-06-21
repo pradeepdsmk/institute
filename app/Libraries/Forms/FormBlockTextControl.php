@@ -15,5 +15,5 @@ class FormBlockTextControl extends FormControl
                 <textarea id="$id" class="form-control" name="$this->name">$value</textarea>
             </div>
 HEREDOC;
-    }
+    }    
 }

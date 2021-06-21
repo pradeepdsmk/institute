@@ -5,7 +5,7 @@ namespace App\Libraries\Forms;
 class FormRadioButtonControl extends FormControl
 {
     public $checked = false;
-    
+
     public function setValueFromRequest()
     {
         $this->setValue($_POST);
@@ -33,11 +33,11 @@ class FormRadioButtonControl extends FormControl
 
         if (!empty($this->childControl)) {
             foreach ($this->childControl as $name => $control) {
-                if(isset($data[$name])) {
+                if (isset($data[$name])) {
                     $control->setValue($data);
                 } else {
                     log_message('debug', "$name not found in initialization data");
-                }                
+                }
             }
         }
     }
@@ -79,5 +79,17 @@ HEREDOC;
                     $childControlText
                 </div>
 HEREDOC;
+    }
+
+    public function data(&$data)
+    {
+        if ($this->checked) {
+            $data[$this->name] = $this->value;
+            if (!empty($this->childControl)) {
+                foreach ($this->childControl as $name => $control) {
+                    $control->data($data);
+                }
+            }
+        }
     }
 }

@@ -11,60 +11,89 @@ class Applicationform extends BaseController
     public function __construct()
     {
         $this->form = F::form('Application Form', [
-            'id' => F::hidden(),
-            'studentPhoto' => F::imageUpload('Photo'),
-            'applicationNumber' => F::text('Application Number'),
-            'registrationNumber' => F::text('Registration Number'),
+            'studentid' => F::hidden(),
+            'studentphoto' => F::imageUpload('Photo'),
+            'applicationnumber' => F::text('Application Number'),
+            'registrationnumber' => F::text('Registration Number'),
             'branch' => F::text('Branch'),
-            'studentName' => F::text('Student Name'),
-            'fatherOrHusbandName' => F::text('Father\'s/Husband\'s Name'),
-            'permanentAddress' => F::textarea('Permanent Address'),
-            'communicationAddress' => F::textarea('Address for Communication'),
+            'studentname' => F::text('Student Name'),
+            'fatherorhusbandname' => F::text('Father\'s/Husband\'s Name'),
+            'permanentaddress' => F::textarea('Permanent Address'),
+            'communicationaddress' => F::textarea('Address for Communication'),
             'sex' => F::radioGroup('Sex', [
                 F::radio('Male', 'm'),
                 F::radio('Female', 'f')
             ]),
-            'dateOfBirth' => F::date('Date of Birth'),
-            'educationQualification' => F::text('Education Qualification'),
-            'technicalQualification' => F::text('Technical Qualification'),
-            'courseJoined' => F::text('Course Joined'),
-            'collegeOrSchoolName' => F::text('College / School Name'),
-            'referenceFrom' => F::radioGroup('Reference From', [
+            'dateofbirth' => F::date('Date of Birth'),
+            'educationqualification' => F::text('Education Qualification'),
+            'technicalqualification' => F::text('Technical Qualification'),
+            'coursejoined' => F::text('Course Joined'),
+            'collegeorschoolname' => F::text('College / School Name'),
+            'referencefrom' => F::radioGroup('Reference From', [
                 F::radio('Friend', 'friend', [
-                    'referenceFromText' => F::text('')
+                    'referencefromtext' => F::text('')
                 ]),
                 F::radio('TV Ad', 'tv-ad'),
                 F::radio('Demo', 'demo')
             ]),
-            'contactNumber' => F::number('Contact No.'),
-            'emailId' => F::email('E-Mail ID'),
+            'contactnumber' => F::number('Contact No.'),
+            'emailid' => F::email('E-Mail ID'),
             'facebook' => F::text('Facebook'),
-            'applicationDate' => F::date('Application Date'),
-            'courseFee' => F::number('Course Fee'),
-            'initialPayment' => F::number('Initial Payment')
+            'applicationdate' => F::date('Application Date'),
+            'coursefee' => F::number('Course Fee'),
+            'initialpayment' => F::number('Initial Payment')
         ]);
     }
 
     public function index()
     {
-        $method = $_SERVER['REQUEST_METHOD'];
-        if ($method == 'GET') {
-            $this->form->fromData([]);
-            return view('application-form/application-form-dynamic', ['form' => $this->form]);
-        } else if ($method == 'POST') {
-            log_message('debug', 'applicationform::index $_POST ' . print_r($_POST, true));
-            log_message('debug', 'applicationform::index $_FILES ' . print_r($_FILES, true));
-            $this->form->fromRequest();
-            if ($this->form->isValid()) {
-                // $this->db->update('application', $this->form->data());
-                // $this->form->reset();
-                $alert = 'Saved';
-            } else {
-                $alert = 'Errors detected';
-            }
-            return view('application-form/application-form-dynamic', ['form' => $this->form, 'alert' => $alert]);
-        } else {
-            return redirect()->to('/applicationform');
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                return $this->get();
+            case 'POST':
+                return $this->post();
+            default:
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
+    }
+
+    private function get()
+    {
+        $id = $_GET['id'] ?? '';
+        if (preg_match('#^[1-9][0-9]*$#', $id)) {
+            $data = $this->db->query('select * from students where studentid = ? limit 1;', [$id])->getRowArray();
+            if (empty($data)) {
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+            }
+            $this->form->fromData($data);
+        } else {
+            $this->form->fromData([]);
+        }
+        return view('application-form/application-form-dynamic', ['form' => $this->form]);
+    }
+
+    private function post()
+    {
+        log_message('debug', 'applicationform::index $_POST ' . print_r($_POST, true));
+        log_message('debug', 'applicationform::index $_FILES ' . print_r($_FILES, true));
+        $this->form->fromRequest();
+
+        if (!$this->form->isValid()) {
+            $alert = 'Errors detected';
+            return view('application-form/application-form-dynamic', ['form' => $this->form, 'alert' => $alert]);
+        }
+        $data = $this->form->data();
+        $id = $data['studentid'];
+
+        if ($id) {
+            $this->db->table('students')->update($data);
+        } else {
+            unset($data['studentid']);
+            $this->db->table('students')->insert($data);
+            $id = $this->db->insertID;
+            $data['studentid'] = $id;
+        }
+
+        return redirect()->to("/applicationform?id=$id");
     }
 }

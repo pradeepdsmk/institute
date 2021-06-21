@@ -59,6 +59,14 @@ class Form
         log_message('alert', 'Form::isValid not implemented');
         return true;
     }
+
+    public function data() {
+        $data = [];
+        foreach($this->controls as $name => $control) {
+            $control->data($data);
+        }
+        return $data;
+    }
 }
 
 

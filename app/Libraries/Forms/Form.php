@@ -56,7 +56,8 @@ class Form
 
     public function isValid(): bool
     {
-        return false;
+        log_message('alert', 'Form::isValid not implemented');
+        return true;
     }
 }
 

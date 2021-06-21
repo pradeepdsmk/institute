@@ -29,7 +29,7 @@ class FormRadioButtonControl extends FormControl
 
     public function setValue($data)
     {
-        $this->checked = !empty($data[$this->name]);
+        $this->checked = (!empty($data[$this->name])) && ($data[$this->name] === $this->value);
 
         if (!empty($this->childControl)) {
             foreach ($this->childControl as $name => $control) {

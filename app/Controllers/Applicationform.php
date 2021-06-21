@@ -90,7 +90,7 @@ class Applicationform extends BaseController
         } else {
             unset($data['studentid']);
             $this->db->table('students')->insert($data);
-            $id = $this->db->insertID;
+            $id = $this->db->insertID();
             $data['studentid'] = $id;
         }
 

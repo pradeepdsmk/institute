@@ -35,7 +35,7 @@ create table students (
     fatherorhusbandname varchar(80) not null,
     permanentaddress varchar(255),
     communicationaddress varchar(255),
-    sex tinyint,
+    sex varchar(10),
     dateofbirth date,
     educationqualification varchar(30),
     technicalqualification varchar(30),

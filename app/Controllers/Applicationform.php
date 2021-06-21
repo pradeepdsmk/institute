@@ -85,14 +85,14 @@ class Applicationform extends BaseController
         $data = $this->form->data();
         $id = $data['studentid'];
 
+        unset($data['studentid']);
         if ($id) {
-            $this->db->table('students')->update($data);
-        } else {
-            unset($data['studentid']);
+            $this->db->table('students')->update($data, ['studentid' => $id]);
+        } else {            
             $this->db->table('students')->insert($data);
-            $id = $this->db->insertID();
-            $data['studentid'] = $id;
+            $id = $this->db->insertID();            
         }
+        $data['studentid'] = $id;
 
         return redirect()->to("/applicationform?id=$id");
     }
